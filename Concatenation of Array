@@ -1,0 +1,14 @@
+http://neetcode.io/problems/concatenation-of-array?list=neetcode250
+
+
+
+class Solution {
+    getConcatenation(nums) {
+        // nums.push(nums);
+        // console.log(nums);
+        nums.forEach((item,index)=>{
+            nums.push(item);
+        })
+        return nums;
+    }
+}
