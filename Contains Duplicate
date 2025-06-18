@@ -12,3 +12,17 @@ class Solution {
         return false;
     }
 }
+
+// O(n)time && O(n)space
+class Solution {
+    hasDuplicate(nums) {
+        const map={};
+        for(let i=0;i<nums.length;i++){
+            if(map[nums[i]]===true){
+                return true;
+            }
+            map[nums[i]]=true;
+        }
+        return false;
+    }
+}
