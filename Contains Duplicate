@@ -1,0 +1,14 @@
+https://neetcode.io/problems/duplicate-integer?list=neetcode250
+
+// NLogN 
+class Solution {
+    hasDuplicate(nums) {
+        nums.sort((a,b)=>a-b);
+        for(let i=0;i<nums.length;i++){
+            if(i+1<nums.length && (nums[i]===nums[i+1])){
+                return true;
+            }
+        }
+        return false;
+    }
+}
