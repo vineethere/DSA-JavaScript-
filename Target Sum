@@ -13,3 +13,20 @@ class Solution {
         }
     }
 }
+
+
+
+// Optimised Approach O(n)space and O(n) time
+class Solution {
+    
+    twoSum(nums, target) {
+        const hashMap=new Map();
+         for(let i=0;i<nums.length;i++){
+            if(hashMap.has(target-nums[i])){
+                console.log(target-nums[i]);
+                return [hashMap.get(target-nums[i]),i];
+            }
+            hashMap.set(nums[i],i);
+         }
+    }
+}
