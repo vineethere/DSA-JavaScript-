@@ -1,0 +1,35 @@
+https://www.geeksforgeeks.org/dsa/segregate-0s-and-1s-in-an-array-by-traversing-array-once/
+
+// 1 pass solution for sorting arrays
+
+const sortfunction=function(arr){
+    let start=0,end=arr.length-1;
+    while(start<end){
+        if(arr[start]!==arr[end]){
+            if(arr[start]===0){
+                start++;end--;
+            }
+            else{
+                arr[start]=0;arr[end]=1;
+                start++;end--;
+            }
+        }
+        else{
+            if(arr[start]===0){
+                start++;
+            }
+            else{
+                console.log("begin");
+                console.log(arr[start]);
+                console.log(arr[end]);
+                console.log("end");
+                end--;
+            }
+        }
+    }
+    return arr;
+}
+
+const arr=[0,1,0,0,1,1,1,0,1,1,0,0,1,0,1,0];
+
+console.log(sortfunction(arr));
