@@ -1,18 +1,27 @@
 https://neetcode.io/problems/longest-common-prefix?list=neetcode250
 
+//brute force solution for Longest Common Prefix
+
+
 class Solution {
     longestCommonPrefix(strs) {
-        if (strs.length === 0) return "";
-
-        let prefix = strs[0];
-
-        for (let i = 1; i < strs.length; i++) {
-            while (strs[i].indexOf(prefix) !== 0) {
-                prefix = prefix.slice(0, -1);
-                if (prefix === "") return "";
-            }
+        let result="";
+        if(strs.length===0){
+            return result;
         }
-
-        return prefix;
+        if(strs.length===1){
+            return strs[0];
+        }
+        let testString = strs[0]; 
+        for(let j=0;j<testString.length;j++){
+            for(let i=0;i<strs.length;i++){ 
+                if(!(testString[j]===strs[i][j])){
+                    return result;
+                }
+            } 
+            result+=testString[j];
+        }
+        return result;
     }
+     
 }
