@@ -1,0 +1,34 @@
+
+
+https://neetcode.io/problems/anagram-groups?list=neetcode250
+
+//O(m *  nlogn)time  and O(m) space
+
+class Solution {
+    groupAnagrams(strs) {
+        let map = new Map();
+        const sortString = (defaultString)=>{
+            return defaultString.split('').sort().join('');
+        }
+        for(let i=0;i<strs.length;i++){
+            let sortedString=sortString(strs[i]);
+            if(map.has(sortedString)){
+                let newArr = map.get(sortedString);
+                newArr.push(strs[i]);
+                map.set(sortedString,newArr);
+            }
+            else{
+                let newArr = [];
+                newArr.push(strs[i]);
+                map.set(sortedString,newArr);
+            }
+        }
+        let result =[];
+
+        for(let [key,value] of map){
+            // console.log(key," ",value);
+            result.push(value);
+        }
+        return result;
+    }
+}
