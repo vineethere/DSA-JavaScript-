@@ -32,3 +32,42 @@ class Solution {
         return result;
     }
 }
+
+
+
+
+
+// Time Complexity: O(n * k)
+
+// Space Complexity: O(n * k)
+no=number fo strings and k = max length of string
+
+class Solution {
+    groupAnagrams(strs) {
+        let map = new Map();
+        const calculateFrequency=(defaultString)=>{
+            let freqArray=new Array(26).fill(0);
+            for(let i =0; i<defaultString.length;i++){
+                let charIndex = defaultString.charCodeAt(i)  -  'a'.charCodeAt(0);
+                freqArray[charIndex]++;
+            }
+            return freqArray;
+        }
+        for(let i=0;i<strs.length;i++){
+            let frequencyArray=calculateFrequency(strs[i]);
+            let key = JSON.stringify(frequencyArray);
+
+ 
+                let newArr = map.get(key) || [];
+                newArr.push(strs[i]);
+                map.set(key,newArr);
+            
+        }
+        let result =[];
+
+        for(let [key,value] of map){
+            result.push(value);
+        }
+        return result;
+    }
+}
