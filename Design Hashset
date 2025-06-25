@@ -1,0 +1,30 @@
+
+
+// https://neetcode.io/problems/design-hashset?list=neetcode250
+
+
+class MyHashSet {
+    constructor() {
+        this.mapArray = [];
+    }
+
+
+    add(key) {
+        if (!this.contains(key)) {
+            this.mapArray.push(key);
+        }
+    }
+
+
+    remove(key) {
+        const index = this.mapArray.indexOf(key);
+        if (index !== -1) {
+            this.mapArray.splice(index, 1);
+        }
+    }
+
+
+    contains(key) {
+        return this.mapArray.indexOf(key) !== -1;
+    }
+}
