@@ -1,0 +1,33 @@
+https://neetcode.io/problems/is-palindrome?list=neetcode250
+
+class Solution {
+    /**
+     * @param {string} s
+     * @return {boolean}
+     */
+    
+    isPalindrome(s) {
+        const isAlphanumeric = (char) =>{
+            let code = char.charCodeAt(0);
+            return (
+                code >= 'A'.charCodeAt(0) && code <='Z'.charCodeAt(0) ||
+                code >= 'a'.charCodeAt(0) && code <= 'z'.charCodeAt(0) ||
+                code >= '0'.charCodeAt(0) && code<='9'.charCodeAt(0)
+            )
+        }
+        let start=0,end=s.length-1;
+        while(start<end){
+            if(s[start]===' ' || !isAlphanumeric(s[start])){start++;continue;}
+            if(s[end]===' ' || !isAlphanumeric(s[end])){end--;continue;}
+
+            if(s[start].toLowerCase()===s[end].toLowerCase()){
+                start++;end--;
+            }
+            else{
+                // console.log(s[start],s[end]);
+                return false;
+            }
+        }
+        return true
+    }
+}
