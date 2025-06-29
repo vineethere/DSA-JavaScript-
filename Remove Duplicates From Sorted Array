@@ -1,0 +1,22 @@
+https://neetcode.io/problems/remove-duplicates-from-sorted-array?list=neetcode250
+
+
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    removeDuplicates(nums) {
+        if(nums.length === 0)return 0;
+        let i=0,lastElement=nums[0];
+
+
+        for(let j=1;j<nums.length;j++){
+            if(nums[j]!==lastElement){
+                i++;
+                nums[i]=nums[j];lastElement=nums[j];
+            }
+        }
+        return i+1;
+    }
+}
