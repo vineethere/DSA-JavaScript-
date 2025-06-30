@@ -1,0 +1,29 @@
+// https://neetcode.io/problems/merge-strings-alternately?list=neetcode250
+
+
+//Two Pointer Approach
+class Solution {
+    mergeAlternately(word1, word2) {
+        let w1=0,w2=0,res="",check='w1';
+        let n=word1.length,m=word2.length;
+        while(w1<n && w2<m){
+                if(check==='w1'){
+                    res+=word1[w1++];
+                    check='w2';
+                }
+                else{
+                    res+=word2[w2++];
+                    check='w1';
+                }
+        }
+        while(w1<n){
+            res+=word1[w1++];
+                    // check='w2';
+        }
+        while(w2<m){
+             res+=word2[w2++];
+                    // check='w1';
+        } return res;
+    }
+   
+}
