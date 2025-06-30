@@ -1,5 +1,9 @@
 https://neetcode.io/problems/valid-palindrome-ii?list=neetcode250
 //Brute force
+
+Tie complexity O(n^2)
+Space complexity O(n)
+
 class Solution {
   isPalindrome(s) {
         let left = 0, right = s.length - 1;
@@ -27,3 +31,42 @@ class Solution {
 
 
   
+// Two Pointer
+Time COmplexity O(n)
+Space Complexity O(n)
+
+class Solution {
+  isPalindrome(s) {
+        let left = 0, right = s.length - 1;
+        while (left < right) {
+            if (s[left] !== s[right]) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    validPalindrome(s) {
+        let start =0,end=s.length-1;
+        if(s.length === 0 || s.length === 1)return true;
+        while(start<end){
+            if(s[start] !== s[end]){
+                return this.isPalindrome(s.slice(0,start)+s.slice(start+1)) ||
+                this.isPalindrome(s.slice(0,end)+s.slice(end+1));
+            }
+            start++;end--;
+            
+        }
+
+        // for (let i = 0; i < s.length; i++) {
+        //     let testString = s.slice(0,i) + s.slice(i+1);
+        //     console.log(testString);
+        //     if(this.isPalindrome(testString)){
+        //         return true;
+        //     }
+        // }
+        return true;
+    }
+}
