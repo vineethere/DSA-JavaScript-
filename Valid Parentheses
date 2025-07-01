@@ -1,0 +1,34 @@
+
+
+//https://neetcode.io/problems/validate-parentheses?list=neetcode250
+
+class Solution {
+    isValid(s) {
+        let tempStack=new Array();
+        for(let i=0;i<s.length;i++){
+            if(s[i]==='[' || s[i]==='(' || s[i]==='{'){
+              tempStack.push(s[i]);
+            }
+            else if(s[i]===')'){
+                if(tempStack[tempStack.length-1]=='('){
+                  tempStack.pop();
+                }
+                else return false;
+            }
+            else if(s[i]===']'){
+                if(tempStack[tempStack.length-1]=='['){
+                  tempStack.pop();
+                }
+                else return false;
+            }
+            else if(s[i]==='}'){
+                if(tempStack[tempStack.length-1]=='{'){
+                  tempStack.pop();
+                }
+                else return false;
+            }
+        }
+        if(tempStack.length === 0)return true;
+        return false;
+    }
+}
