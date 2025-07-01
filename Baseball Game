@@ -1,0 +1,50 @@
+
+
+
+
+
+//  https://neetcode.io/problems/baseball-game?list=neetcode250
+
+
+class Solution {
+    calPoints(operations) {
+        let dummyStack=[];
+        for(let i of operations){
+            if(i === '+'){
+                if(dummyStack.length < 2 || dummyStack[dummyStack.length-1]===NaN || dummyStack[dummyStack.length-2]===NaN){
+                   continue;
+                }
+                let num1=dummyStack[dummyStack.length-1];
+                dummyStack.pop();
+                let num2=dummyStack[dummyStack.length-1];
+                dummyStack.push(num1);
+                dummyStack.push(num1+num2);
+                console.log(i,dummyStack);
+            }
+            else if(i === 'D'){
+                if(dummyStack.length < 1 || dummyStack[dummyStack.length-1]===NaN ){
+                   continue;
+                }
+                let num1=dummyStack[dummyStack.length-1];
+                // let num2=dummyStack[dummyStack.length-1];
+                // dummyStack.push(num1);
+                dummyStack.push(num1*2);
+            }
+            else if(i === 'C'){
+                console.log(dummyStack,i);
+                dummyStack.pop();
+            }
+            else{
+                dummyStack.push(Number(i));
+            }
+        }
+        let res=0;
+        for(let i of dummyStack){
+         res+=i;
+        }
+        return res;
+    }
+    
+}
+
+// Note: The test cases are generated such that the answer and all intermediate calculations fit in a 32-bit integer and that all operations are valid.
