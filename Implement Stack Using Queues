@@ -1,0 +1,50 @@
+//https://neetcode.io/problems/implement-stack-using-queues?list=neetcode250
+
+class MyStack {
+    constructor() {
+        this.q1 = [];
+        this.q2 = [];
+    }
+
+    /**
+     * Push element x onto stack.
+     * @param {number} x
+     * @return {void}
+     */
+    push(x) {
+        // Push to q2
+        this.q2.push(x);
+        
+        // Push all elements from q1 to q2
+        while (this.q1.length > 0) {
+            this.q2.push(this.q1.shift());
+        }
+
+        // Swap names of q1 and q2
+        [this.q1, this.q2] = [this.q2, this.q1];
+    }
+
+    /**
+     * Removes the element on top of the stack and returns that element.
+     * @return {number}
+     */
+    pop() {
+        return this.q1.shift();
+    }
+
+    /**
+     * Get the top element.
+     * @return {number}
+     */
+    top() {
+        return this.q1[0];
+    }
+
+    /**
+     * Returns whether the stack is empty.
+     * @return {boolean}
+     */
+    empty() {
+        return this.q1.length === 0;
+    }
+}
