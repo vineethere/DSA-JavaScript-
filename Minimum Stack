@@ -1,0 +1,50 @@
+// https://neetcode.io/problems/minimum-stack?list=neetcode250
+
+
+class MinStack {
+    constructor() {
+        this.stack=[];
+        this.extraMinElemStack=[];
+    }
+
+    /**
+     * @param {number} val
+     * @return {void}
+     */
+    push(val) {
+        if(this.extraMinElemStack.length <=0){
+               this.extraMinElemStack.push(val);
+                this.stack.push(val);
+                return;
+        }
+        if( this.extraMinElemStack[this.extraMinElemStack.length - 1]>val){
+            this.extraMinElemStack.push(val);
+            this.stack.push(val);
+        }
+        else{
+            this.extraMinElemStack.push(this.extraMinElemStack[this.extraMinElemStack.length-1]);
+            this.stack.push(val);
+        }
+        // this.stack.push(val);
+    }
+
+    /**
+     * @return {void}
+     */
+    pop() {
+        this.stack.pop();
+        this.extraMinElemStack.pop();
+    }
+
+    /**
+     * @return {number}
+     */
+    top() {
+        return this.stack[this.stack.length-1];
+    }
+
+    /**
+     * @return {number}
+     */
+    getMin() {return this.extraMinElemStack?.length>=0?this.extraMinElemStack[this.extraMinElemStack.length-1]:-1;}
+}
