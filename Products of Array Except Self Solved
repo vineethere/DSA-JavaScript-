@@ -1,0 +1,31 @@
+
+// https://neetcode.io/problems/products-of-array-discluding-self?list=neetcode150
+class Solution {
+    productExceptSelf(nums) {
+        let multipliedSolution = 1,zeroes=0;
+        for(let i=0;i<nums.length;i++){
+            if(nums[i] === 0){zeroes++;continue;}
+            multipliedSolution = multipliedSolution*nums[i]; 
+        }
+        console.log(zeroes,multipliedSolution);
+        for(let i=0;i<nums.length;i++){
+            if(zeroes===1){
+                 nums[i]= (nums[i]===0) ? multipliedSolution : 0;
+            }
+            else if(zeroes>1){
+                nums[i]=0;
+            }
+            else{
+                let res=multipliedSolution/nums[i];
+                nums[i]=res;
+            }
+            
+        }
+        return nums;
+    }
+}
+
+
+Complexity Type	Value
+Time Complexity	O(n)
+Space Complexity	O(1)
