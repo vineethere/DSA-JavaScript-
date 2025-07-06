@@ -1,0 +1,34 @@
+
+
+//https://neetcode.io/problems/evaluate-reverse-polish-notation?list=neetcode250
+
+class Solution {
+    evalRPN(tokens) {
+        let stack = [];
+        for (let i = 0; i < tokens.length; i++) {
+            let token = tokens[i];
+            if (token === "+") {
+                let b = stack.pop();
+                let a = stack.pop();
+                stack.push(a + b);
+            } else if (token === "-") {
+                console.log(stack);
+
+                let b = stack.pop();
+                let a = stack.pop();
+                stack.push(a - b);
+            } else if (token === "*") {
+                let b = stack.pop();
+                let a = stack.pop();
+                stack.push(a * b);
+            } else if (token === "/") {
+                let b = stack.pop();
+                let a = stack.pop();
+                stack.push(Math.trunc(a / b)); // truncates toward 0
+            } else {
+                stack.push(Number(token));
+            }
+        }
+        return stack[0];
+    }
+}
