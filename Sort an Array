@@ -96,3 +96,38 @@ class Solution {
       return nums;
     }
 }
+
+
+//Quick Sort Arrays
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number[]}
+     */
+    partition = (nums,start,end) =>{
+        let pivot = nums[Math.floor((start+end)/2)];
+        
+        while(start<=end){
+            while(nums[start]<pivot)start++;
+            while(nums[end]>pivot)end--;
+             if (start <= end) {
+                [nums[start],nums[end]] = [nums[end],nums[start]];
+                start++;end--;
+            }
+      }
+      return start;
+    }
+    quickSort(nums,start,end){
+        if(start>=end)return;
+        let pivot = this.partition(nums,start,end);
+        this.quickSort(nums,start,pivot-1);
+        this.quickSort(nums,pivot,end);
+    }
+    sortArray(nums) {
+        if (!nums || nums.length === 0) return [];
+        this.quickSort(nums,0,nums?.length-1);
+        return nums;
+    }
+}
+Algorithm	Time Complexity   	Space Complexity (Worst Case)
+Quick Sort  	O(N log N)	       O(N)
