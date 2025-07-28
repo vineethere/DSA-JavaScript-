@@ -1,0 +1,22 @@
+// https://neetcode.io/problems/top-k-elements-in-list?list=neetcode250
+
+
+class Solution {
+    topKFrequent(nums, k) {
+        let visible = new Map();
+        for (let i = 0; i < nums.length; i++) {
+            if (visible.has(nums[i])) {
+                visible.set(nums[i],visible.get(nums[i])+1);
+            } else {
+                visible.set(nums[i],1);
+            }
+        }
+        let result =[];
+        let a=Array.from(visible.entries()).sort((a,b)=>a[1]-b[1]);
+        while(k--){
+            result.push(a[a.length-1][0]);
+            a.pop();
+        }
+        return result;
+    }
+}
