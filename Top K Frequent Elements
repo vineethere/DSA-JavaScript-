@@ -1,5 +1,6 @@
 // https://neetcode.io/problems/top-k-elements-in-list?list=neetcode250
-
+Time complexity O(nlogn)
+Space complexity O(n)
 
 class Solution {
     topKFrequent(nums, k) {
