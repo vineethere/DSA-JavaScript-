@@ -1,0 +1,27 @@
+// https://neetcode.io/problems/rotate-array?list=neetcode250
+// Time coplexity O(n)
+// Space complexity O(n)
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} k
+     * @return {void} Do not return anything, modify nums in-place instead.
+     */
+    rotate(nums, k) {
+        let result=[];
+        let n=nums.length;
+        if(n ===0 || k===0){
+            return;
+        }
+        while(k>n){k=k-n;}
+        for(let i=n-k;i<n;i++){
+            result.push(nums[i]);
+        }
+        for(let i=0;i<n-k;i++){
+            result.push(nums[i]);
+        }
+        for(let i=0;i<result.length;i++){
+            nums[i]=result[i];
+        }
+    }
+}
