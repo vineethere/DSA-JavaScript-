@@ -23,3 +23,26 @@ class Solution {
         return false;
     }
 }
+
+
+
+//time complexity O(N)
+//space compexity O(1)
+class Solution {
+    containsNearbyDuplicate(nums, k) {
+        let storedData={};
+        let n=nums.length;
+        for(let i=0;i<n;i++){
+            if(storedData[nums[i]]!==undefined){console.log("aaya");
+                if(i-storedData[nums[i]]<=k){
+                    return true;
+                }
+                else storedData[nums[i]]=i;
+            }
+            else{
+                storedData[nums[i]]=i;
+            }
+        }
+        return false;
+        
+    }
