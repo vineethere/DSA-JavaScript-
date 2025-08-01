@@ -1,0 +1,25 @@
+// https://neetcode.io/problems/contains-duplicate-ii?list=neetcode250
+
+//time complexity O(n^2)
+// space complexity O(1)
+// brute force
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} k
+     * @return {boolean}
+     */
+    containsNearbyDuplicate(nums, k) {
+        if(k===0 || nums.length===0){
+            return false;
+        }
+        for(let i=0;i<nums.length;i++){
+            for(let j=i+1;j<nums.length;j++){
+                if(j-i <=k && nums[i]===nums[j]){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
