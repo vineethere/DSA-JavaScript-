@@ -1,0 +1,24 @@
+https://neetcode.io/problems/buy-and-sell-crypto?list=neetcode250
+
+// Brute force 
+// Time complexity O(n^2)
+// Space complexity O(1)
+
+class Solution {
+    /**
+     * @param {number[]} prices
+     * @return {number}
+     */
+    maxProfit(prices) {
+        let maxProfit=0;
+        for(let i=0;i<prices.length;i++){
+            for(let j=i;j<prices.length;j++){
+                if(prices[j]-prices[i]>maxProfit){
+                    console.log(prices[i],prices[j],i,j);
+                    maxProfit=prices[j]-prices[i];
+                }
+            }
+        }
+        return maxProfit;
+    }
+}
