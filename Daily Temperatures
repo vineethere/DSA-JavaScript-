@@ -18,3 +18,33 @@ var dailyTemperatures = function(tempratures) {
     }
     return ans;
 };
+
+
+
+Optmimized approach
+
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+//  stack -> [index,element]
+var dailyTemperatures = function (temperatures) {
+    let stack = [];
+    let n = temperatures.length;
+    let ans = new Array(n).fill(0);
+    let end = n - 1
+    while (end >= 0) {
+        while (stack.length && temperatures[stack[stack.length - 1]] <= temperatures[end]) {
+            stack.pop();
+        }
+      
+        if (stack.length) {
+            ans[end] = (stack[stack.length - 1] - end);
+        }
+
+        stack.push(end--);
+
+    }
+
+    return ans;
+};
