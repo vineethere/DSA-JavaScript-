@@ -1,0 +1,24 @@
+https://leetcode.com/problems/subsets/
+
+
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function (nums) {
+    const recursiveSubsets = (start) => {
+        if (start >= nums.length) {
+            return [[]];
+        }
+        let res = recursiveSubsets(start+1);
+        let remaining = [];
+        for(let i =0;i<res.length;i++){ 
+            remaining.push([nums[start], ...res[i]]);
+        }
+        return [...res,...remaining];
+    }
+
+    return recursiveSubsets(0);
+
+};
