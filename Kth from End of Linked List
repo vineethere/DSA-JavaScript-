@@ -1,0 +1,31 @@
+https://www.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1
+
+
+
+
+/* Structure of Linked List Node
+class Node {
+    constructor(x) {
+        this.data = x;
+        this.next = null;
+    }
+} */
+//Single Traversal Solution
+class Solution {
+    getKthFromLast(head, k) {
+
+        let first = head,second=head;
+        for(let i=0;i<k;i++){
+            if(!second)
+                return -1;
+
+            second = second.next;
+        }
+
+        while(second){
+            first=first.next;
+            second=second.next;
+        }
+        return first ? first.data : -1;
+    }
+}
