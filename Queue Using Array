@@ -1,0 +1,61 @@
+Queue Using Array
+https://www.geeksforgeeks.org/problems/implement-queue-using-array/1
+
+
+
+class myQueue {
+    constructor(n) {
+        this.queue = new Array(n);
+        this.capacity = n;
+        this.itemCount = 0;
+        this.front = 0;
+        this.rear = 0;
+    }
+
+    isEmpty() {
+        return this.itemCount === 0;
+    }
+
+    isFull() {
+        return this.itemCount === this.capacity;
+    }
+
+    enqueue(x) {
+        if (this.isFull()) {
+            return;
+        }
+
+        this.queue[this.rear] = x;
+        this.rear = (this.rear + 1) % this.capacity;
+        this.itemCount++;
+    }
+
+    dequeue() {
+        if (this.isEmpty()) {
+            return -1;
+        }
+
+        const value = this.queue[this.front];
+
+        this.front = (this.front + 1) % this.capacity;
+        this.itemCount--;
+
+        return value;
+    }
+
+    getFront() {
+        if (this.isEmpty()) {
+            return -1;
+        }
+
+        return this.queue[this.front];
+    }
+
+    getRear() {
+        if (this.isEmpty()) {
+            return -1;
+        }
+
+        return this.queue[(this.rear - 1 + this.capacity) % this.capacity];
+    }
+}
