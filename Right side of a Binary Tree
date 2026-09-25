@@ -1,0 +1,48 @@
+https://www.geeksforgeeks.org/problems/right-view-of-binary-tree/1
+
+
+
+/*
+class Node {
+    constructor(val) {
+        this.data = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+*/
+
+/**
+ * @param {Node} root
+ * @returns {number[]}
+ */
+
+class Solution {
+    rightView(root) {
+        let ans = [];
+        if(!root)return ans;
+      let q = [root];
+      
+    while(q.length){
+    
+  let size=q.length;
+      while(size--){
+          let curr = q.shift();
+          if(size === 0){
+              ans.push(curr.data);
+          }
+          
+        //   console.log(curr.left,"curr");
+          
+          if(curr && curr.left){
+            //   console.log("aaya")
+              q.push(curr.left);
+          }
+          if(curr && curr.right){
+              q.push(curr.right);
+          }
+      }
+}
+      return ans;
+    }
+}
