@@ -1,0 +1,29 @@
+https://www.geeksforgeeks.org/problems/detect-loop-in-linked-list/1
+
+
+/* Linked List Node Structure
+class Node{
+    constructor(data){
+        this.data = data;
+        this.next = null;
+    }
+} */
+
+/**
+ * @param {Node} head
+ * @returns {boolean}
+ */
+class Solution {
+    detectLoop(head) {
+        // code here
+        if(!head || !head.next)return 0;
+           let slow = head;
+        let fast = head;
+        while(slow && fast && fast.next){
+            slow= slow.next;
+            fast=fast.next.next;
+            if(slow === fast)return 1;
+        }
+        return 0;
+    }
+}
