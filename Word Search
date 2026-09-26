@@ -1,0 +1,44 @@
+https://leetcode.com/problems/word-search/submissions/2153873829/
+
+
+/**
+ * @param {character[][]} board
+ * @param {string} word
+ * @return {boolean}
+ */
+var exist = function (board, word) {
+    const visited = Array.from({ length: board.length }, () => Array(board[0].length).fill(0));
+
+
+    const recurvsive = (i, j, index) => {
+
+        if (i < 0 || j < 0 || i >= board.length || j >= board[0].length) return false; 
+        if (visited[i][j]) return false;
+        if (word[index] !== board[i][j]) return false;
+        if (index === word.length - 1) return true;
+
+
+
+
+        visited[i][j] = true;
+
+        let found = recurvsive(i + 1, j, index + 1) || recurvsive(i - 1, j, index + 1) || recurvsive(i, j + 1, index + 1) || recurvsive(i, j - 1, index + 1);
+
+        visited[i][j] = false;
+        return found;
+    } 
+    
+    
+    
+    
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[0].length; j++) {
+            if (recurvsive(i, j, 0)) {
+                return true;
+            }
+        }
+    }
+
+
+    return false;
+};
