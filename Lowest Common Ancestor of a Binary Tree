@@ -1,0 +1,38 @@
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+
+
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+var lowestCommonAncestor = function (root, p, q) {
+    let ans = null;
+    const dfs = (node) => {
+        if (!node) return false;
+        let left,right;
+        left = dfs(node.left);
+        right = dfs(node.right);
+        if (left && right) { ans = node; return false; }
+        if (node.val === p.val || node.val === q.val) {
+            if (left || right) {
+                ans = node; return false;
+            }
+            return true;
+        }
+        return left || right;
+    }
+
+    console.log(dfs(root), ans);
+    return ans;
+};
