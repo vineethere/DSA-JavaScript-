@@ -1,0 +1,48 @@
+https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
+
+
+/**
+ * @param {number[]} weights
+ * @param {number} days
+ * @return {number}
+ */
+var shipWithinDays = function (weights, days) {
+    const canShip = (weights, days, cap) => {
+        let daysNeeded = 1;
+        let currentLoad = 0;
+
+        for (const w of weights) {
+            if (currentLoad + w > cap) {
+                daysNeeded++;
+                currentLoad = 0;
+            }
+
+            currentLoad += w;
+        }
+
+        return daysNeeded <= days;
+    };
+
+    let left = 0;
+    let right = 0;
+
+    for (let i = 0; i < weights.length; i++) {
+        left = Math.max(left, weights[i]);
+        right += weights[i];
+    }
+
+    let ans = right;
+
+    while (left <= right) {
+        const capacity = Math.floor(left + (right - left) / 2);
+
+        if (canShip(weights, days, capacity)) {
+            ans = capacity;
+            right = capacity - 1;
+        } else {
+            left = capacity + 1;
+        }
+    }
+
+    return ans;
+};
