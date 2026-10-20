@@ -1,0 +1,29 @@
+https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
+
+
+/**
+* @param {number[][]} adj
+* @return s {number[]}
+*/
+
+class Solution {
+	bfs(adj) {
+		let n = adj.length;
+		let visited = new Array(n).fill(false);
+		let q = [0];
+		let ans = [];
+		while (q.length) {
+			let curr = q.shift();
+			
+			if (!visited[curr])
+				ans.push(curr);
+			
+			for (let i = 0; i<adj[curr].length; i++) {
+				if (!visited[curr])
+					q.push(adj[curr][i]);
+			}
+			visited[curr] = true;
+		}
+		return ans;
+	}
+}
