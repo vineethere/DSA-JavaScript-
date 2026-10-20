@@ -1,0 +1,31 @@
+https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1
+
+
+
+/**
+ * @param {number[][]} adj
+ * @returns {number[]}
+ */
+
+class Solution {
+    dfs(adj) {
+        let stack = [0];let ans =[],
+        visited=new Array(adj.length).fill(false);
+        while(stack.length){
+            
+            let curr = stack.pop();
+           if (visited[curr]) continue;
+            
+            ans.push(curr);
+             visited[curr]=true;
+            
+            for(let i=adj[curr].length-1;i>=0;i--){
+                if(!visited[adj[curr][i]])
+                stack.push(adj[curr][i]);
+            }
+            
+            
+        }
+        return ans;
+    }
+}
