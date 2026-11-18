@@ -1,0 +1,73 @@
+https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
+
+
+
+/**
+ * @param {number[][]} rectangles
+ * @param {number[][]} points
+ * @return {number[]}
+ */
+
+/*
+rectangles = [[1,2], [2,3], [2,5]]
+points = [[2,1],  [1,4]]
+
+heightsReference(Object) ->
+{
+2 -> [1]
+3 -> [2]
+5 -> [2]
+}
+
+
+
+
+*/
+var countRectangles = function (rectangles, points) {
+    // Optimized approach
+    let heightsReference = {};
+    for (let i = 0; i < rectangles.length; i++) {                    //Rectangles[i]=[1,2] - [2,3] - [2,5]
+
+        if (heightsReference[rectangles[i][1]]) {
+            heightsReference[rectangles[i][1]].push(rectangles[i][0]);
+        }
+        else {
+            heightsReference[rectangles[i][1]] = [rectangles[i][0]];
+        }
+
+    }
+    // { '2': [ 1 ], '3': [ 2 ], '5': [ 2 ] } heightsReference
+
+    Object.entries(heightsReference).map(([key, value]) => {
+        value.sort((a, b) => a - b);
+    })
+
+    let returnValue = new Array(points.length).fill(0);
+    for (let i = 0; i < points.length; i++) {
+        let ans = 0;
+
+        Object.entries(heightsReference).map(([key, value]) => {
+            if (Number(key) >= points[i][1]) {
+
+                let left = 0, right = value.length;
+                while (left < right) {
+                    let mid = Math.floor((right + left) / 2);
+                    if (value[mid] < points[i][0]) {
+                        left = mid + 1;
+                    }
+                    else {
+                        right = mid;
+                    }
+
+                }
+
+                ans += value.length - left;
+            }
+
+        })
+
+        returnValue[i] = ans;
+    }
+    return returnValue;
+    console.log(heightsReference, "heightsReference");
+};
